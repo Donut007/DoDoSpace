@@ -1,18 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3hnj6103ue5c"]
 
 [ext_resource type="Script" path="res://Item/DoDo/do_do_space.gd" id="1_fcdv1"]
-[ext_resource type="Texture2D" uid="uid://b5djcv8i0felg" path="res://Image/icon.svg" id="1_t6egb"]
+[ext_resource type="Texture2D" uid="uid://nk665qckpodh" path="res://Image/MainRocket.png" id="2_xnwxk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nxpu4"]
-radius = 47.0
-height = 134.0
+radius = 17.0
+height = 56.0
 
-[node name="Node2D" type="CharacterBody2D"]
+[node name="DoDo" type="CharacterBody2D"]
 script = ExtResource("1_fcdv1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.703125, 1)
-texture = ExtResource("1_t6egb")
+texture = ExtResource("2_xnwxk")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_nxpu4")

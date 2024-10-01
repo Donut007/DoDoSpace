@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://coxtyylkip24k"]
+
+[ext_resource type="Script" path="res://Item/Bullet/main_bullet/main_bullet.gd" id="1_xb7rk"]
+[ext_resource type="Resource" uid="uid://dtbnu4mxnaod1" path="res://Item/Bullet/Enemy/Enemy_bullet_stat.tres" id="2_m32iy"]
+[ext_resource type="Texture2D" uid="uid://nk665qckpodh" path="res://Image/MainRocket.png" id="3_xour0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c3iwy"]
+radius = 5.0
+height = 22.0
+
+[node name="Enemy_bullet" type="CharacterBody2D"]
+script = ExtResource("1_xb7rk")
+resource = ExtResource("2_m32iy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_c3iwy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_xour0")
+region_enabled = true
+region_rect = Rect2(90, 85, 11, 22)
