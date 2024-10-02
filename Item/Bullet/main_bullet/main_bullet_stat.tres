@@ -6,4 +6,5 @@
 script = ExtResource("1_h7ua3")
 BulletName = "Main"
 Damage = 100.0
-Speed = 100.0
+Speed = 500.0
+cooldown = 0.5

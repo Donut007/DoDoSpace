@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckbl3dd0vah5"]
+[gd_scene load_steps=8 format=3 uid="uid://ckbl3dd0vah5"]
 
 [ext_resource type="Script" path="res://Scene/Scene_1/Scene_1.gd" id="1_q55o1"]
 [ext_resource type="PackedScene" uid="uid://b3hnj6103ue5c" path="res://Item/DoDo/DoDoSpace.tscn" id="2_y7vrx"]
@@ -6,9 +6,18 @@
 
 [sub_resource type="Curve2D" id="Curve2D_2ksoa"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 315, 257, 0, 0, 0, 0, 487.672, 290.277, 0, 0, 0, 0, 591, 316, 0, 0, 0, 0, 315, 255)
+"points": PackedVector2Array(0, 0, 0, 0, 315, 257, 0, 0, 0, 0, 590, 257, 0, 0, 0, 0, 487.672, 257, 0, 0, 0, 0, 591, 257, 0, 0, 0, 0, 315, 257)
 }
-point_count = 4
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eml8t"]
+size = Vector2(29.5, 670)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8clcp"]
+size = Vector2(648.75, 87)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bhkj"]
+size = Vector2(649.875, 48)
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_q55o1")
@@ -16,33 +25,58 @@ script = ExtResource("1_q55o1")
 [node name="BG" type="Node2D" parent="."]
 
 [node name="ColorRect2" type="ColorRect" parent="BG"]
-offset_left = 68.0
-offset_top = 154.0
-offset_right = 848.0
-offset_bottom = 595.0
+offset_left = -11.0
+offset_top = -8.0
+offset_right = 1167.0
+offset_bottom = 664.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="BG"]
-offset_left = 314.0
-offset_top = 157.0
-offset_right = 596.0
-offset_bottom = 596.0
+[node name="ColorRect" type="ColorRect" parent="BG/ColorRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -292.0
+offset_top = -336.0
+offset_right = 292.0
+offset_bottom = 322.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.217101, 0.217101, 0.217101, 1)
 
 [node name="DoDo" parent="." instance=ExtResource("2_y7vrx")]
-position = Vector2(450, 498)
+position = Vector2(563, 513)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(458, 376)
-zoom = Vector2(1.465, 1.465)
+position = Vector2(576, 323)
 
 [node name="Path2D" type="Path2D" parent="."]
+position = Vector2(113, 10)
 curve = SubResource("Curve2D_2ksoa")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(315, 257)
-rotation = 0.190384
 rotates = false
 
 [node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource("3_ue1y5")]
-rotation = -3.14159
+rotation = 3.14159
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(267.75, 327)
+shape = SubResource("RectangleShape2D_eml8t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(575, 692)
+shape = SubResource("RectangleShape2D_8clcp")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(578.063, -25)
+shape = SubResource("RectangleShape2D_4bhkj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(887, 329)
+shape = SubResource("RectangleShape2D_eml8t")

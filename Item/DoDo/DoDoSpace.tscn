@@ -27,3 +27,5 @@ shape = SubResource("CapsuleShape2D_nxpu4")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -21)
+
+[node name="Fire_Cooldown" type="Timer" parent="."]

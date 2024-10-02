@@ -5,12 +5,13 @@ extends CharacterBody2D
 @onready var _fire_cooldown = $Fire_Cooldown
 
 func _ready():
+	_fire_cooldown.wait_time = Bullet.instantiate().stat.cooldown
 	_fire_cooldown.start()
 	
 func _on_fire_cooldown_timeout():
 	var bullet:Area2D = Bullet.instantiate()
 	bullet._creater = self
-	get_parent().add_child(bullet)
+	Global.currentScene.add_child(bullet)
 	bullet.global_position = $Marker2D.global_position
 	
 func getHit(damage:float):

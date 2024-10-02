@@ -8,11 +8,25 @@ const JUMP_VELOCITY = -400.0
 @export var stat:damage_control
 @export var _MaxSpeed:float = 1000.0;
 @export var _Accel:float = 1000.0;
+@onready var _fire_cooldown = $Fire_Cooldown
 var _delta:float = 0.0;
 
+
+func _ready() -> void:
+	_fire_cooldown.wait_time = Bullet.instantiate().stat.cooldown
+	_fire_cooldown.start()
+	
 func _physics_process(delta):
 	_delta = delta
-	CalculateMovement()
+	#CalculateMovement()
+	EasyMovement()
+
+func EasyMovement():
+	var X_vector = int(Input.is_action_pressed("Right"))-int(Input.is_action_pressed("Left"))
+	var Y_vector = int(Input.is_action_pressed("Down"))-int(Input.is_action_pressed("Up"))	
+	var move_pos:Vector2 = Vector2(X_vector,Y_vector).normalized();
+	position += move_pos*_delta*_MaxSpeed
+	move_and_slide()
 	
 func CalculateMovement():
 	var X_vector = int(Input.is_action_pressed("Right"))-int(Input.is_action_pressed("Left"))
@@ -33,7 +47,7 @@ func _process(delta: float):
 	if Input.is_action_just_pressed("Fire"):
 		var bullet:Area2D = Bullet.instantiate()
 		bullet._creater = self
-		get_parent().add_child(bullet)
+		Global.currentScene.add_child(bullet)
 		bullet.global_position = $Marker2D.global_position
 		
 func getHit(damage:float):

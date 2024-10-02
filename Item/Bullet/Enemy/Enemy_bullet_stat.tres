@@ -6,4 +6,5 @@
 script = ExtResource("1_3r6p7")
 BulletName = "Enemy"
 Damage = 10.0
-Speed = 100.0
+Speed = 500.0
+cooldown = 0.5
