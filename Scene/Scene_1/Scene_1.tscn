@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckbl3dd0vah5"]
+
+[ext_resource type="Script" path="res://Scene/Scene_1/Scene_1.gd" id="1_q55o1"]
+[ext_resource type="PackedScene" uid="uid://b3hnj6103ue5c" path="res://Item/DoDo/DoDoSpace.tscn" id="2_y7vrx"]
+[ext_resource type="PackedScene" uid="uid://ioic1rd377vr" path="res://Item/Enemy/Enemy.tscn" id="3_ue1y5"]
+
+[sub_resource type="Curve2D" id="Curve2D_2ksoa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 315, 257, 0, 0, 0, 0, 487.672, 290.277, 0, 0, 0, 0, 591, 316, 0, 0, 0, 0, 315, 255)
+}
+point_count = 4
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_q55o1")
+
+[node name="BG" type="Node2D" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="BG"]
+offset_left = 68.0
+offset_top = 154.0
+offset_right = 848.0
+offset_bottom = 595.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+offset_left = 314.0
+offset_top = 157.0
+offset_right = 596.0
+offset_bottom = 596.0
+color = Color(0.217101, 0.217101, 0.217101, 1)
+
+[node name="DoDo" parent="." instance=ExtResource("2_y7vrx")]
+position = Vector2(450, 498)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(458, 376)
+zoom = Vector2(1.465, 1.465)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2ksoa")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(315, 257)
+rotation = 0.190384
+rotates = false
+
+[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource("3_ue1y5")]
+rotation = -3.14159

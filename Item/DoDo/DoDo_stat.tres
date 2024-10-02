@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="damage_control" load_steps=2 format=3 uid="uid://cfy547oyxsniy"]
+
+[ext_resource type="Script" path="res://Item/Resource/DamageControl.gd" id="1_3k3ef"]
+
+[resource]
+script = ExtResource("1_3k3ef")
+HP = 100

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Model_Bullet" load_steps=2 format=3 uid="uid://ck46t05n2wdov"]
 
-[ext_resource type="Script" path="res://Item/Bullet/Model_Bullet.gd" id="1_h7ua3"]
+[ext_resource type="Script" path="res://Item/Resource/Model_Bullet.gd" id="1_h7ua3"]
 
 [resource]
 script = ExtResource("1_h7ua3")
-BulletName = ""
-Damage = 0.0
-Speed = 0.0
+BulletName = "Main"
+Damage = 100.0
+Speed = 100.0

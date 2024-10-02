@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ioic1rd377vr"]
+
+[ext_resource type="Script" path="res://Item/Enemy/enemy.gd" id="1_hml8g"]
+[ext_resource type="Texture2D" uid="uid://nk665qckpodh" path="res://Image/MainRocket.png" id="2_60r4g"]
+[ext_resource type="PackedScene" uid="uid://coxtyylkip24k" path="res://Item/Bullet/Enemy/Enemy_bullet.tscn" id="2_muimi"]
+[ext_resource type="Resource" uid="uid://bb2cxjqelwsj8" path="res://Item/Enemy/Enemy_stat.tres" id="3_0mdw6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nxpu4"]
+radius = 17.0
+height = 56.0
+
+[node name="Enemy" type="CharacterBody2D"]
+z_index = 2
+script = ExtResource("1_hml8g")
+Bullet = ExtResource("2_muimi")
+stat = ExtResource("3_0mdw6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.703125, 1)
+texture = ExtResource("2_60r4g")
+region_enabled = true
+region_rect = Rect2(71, 6, 49, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_nxpu4")
+
+[node name="Fire_Cooldown" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -23)
+
+[connection signal="timeout" from="Fire_Cooldown" to="." method="_on_fire_cooldown_timeout"]
