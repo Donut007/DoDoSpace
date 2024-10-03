@@ -29,3 +29,5 @@ shape = SubResource("CapsuleShape2D_nxpu4")
 position = Vector2(0, -21)
 
 [node name="Fire_Cooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="Fire_Cooldown" to="." method="_on_fire_cooldown_timeout"]

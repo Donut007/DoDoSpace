@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddo5g38xab3nj"]
+[gd_scene load_steps=3 format=3 uid="uid://de68gef5gngg7"]
 
-[ext_resource type="Script" path="res://Item/Script/Bullet_script.gd" id="1_nqrtp"]
-[ext_resource type="Texture2D" uid="uid://nk665qckpodh" path="res://Image/MainRocket.png" id="1_qaqi6"]
+[ext_resource type="Script" path="res://Item/Script/Bullet_script.gd" id="1_eagu0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c3iwy"]
 radius = 5.0
@@ -9,14 +8,13 @@ height = 22.0
 
 [node name="MainBullet" type="Area2D" groups=["Bullet"]]
 z_index = 1
-script = ExtResource("1_nqrtp")
+script = ExtResource("1_eagu0")
 BulletName = "Main"
 Damage = 100.0
 Speed = 500.0
 cooldown = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_qaqi6")
 region_enabled = true
 region_rect = Rect2(26, 85, 11, 22)
 

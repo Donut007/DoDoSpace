@@ -10,10 +10,12 @@ const JUMP_VELOCITY = -400.0
 @export var _Accel:float = 1000.0;
 @onready var _fire_cooldown = $Fire_Cooldown
 var _delta:float = 0.0;
+var _canFire = true
+var _default_bullet:module_bullet
 
-
-func _ready() -> void:
-	_fire_cooldown.wait_time = Bullet.instantiate().stat.cooldown
+func _ready():
+	_default_bullet = Bullet.instantiate()
+	_fire_cooldown.wait_time = _default_bullet.cooldown
 	_fire_cooldown.start()
 	
 func _physics_process(delta):
@@ -44,14 +46,22 @@ func CalculateMovement():
 	move_and_slide()
 
 func _process(delta: float):
-	if Input.is_action_just_pressed("Fire"):
+	if Input.is_action_pressed("Fire"):
+		if not _canFire:
+			return
+			
 		var bullet:Area2D = Bullet.instantiate()
 		bullet._creater = self
 		Global.currentScene.add_child(bullet)
 		bullet.global_position = $Marker2D.global_position
+		_canFire = false
 		
 func getHit(damage:float):
 	stat.HP -= damage
 	if stat.HP <= 0:
 		queue_free()
 		
+
+
+func _on_fire_cooldown_timeout():
+	_canFire = true

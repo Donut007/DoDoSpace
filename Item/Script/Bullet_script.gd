@@ -1,8 +1,4 @@
-extends Area2D
-@export var stat:Model_Bullet
-
-var _creater:CharacterBody2D
-var dir:Vector2
+extends module_bullet
 
 func _ready() -> void:
 	var rot = _creater.rotation
@@ -10,7 +6,7 @@ func _ready() -> void:
 	rotate(_creater.rotation)
 	
 func _physics_process(delta):
-	translate(dir*delta*stat.Speed)
+	translate(dir*delta*Speed)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
@@ -19,5 +15,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body == _creater or (body as CharacterBody2D) == null:
 		return
-	body.getHit(stat.Damage)
+	body.getHit(Damage)
 	queue_free()

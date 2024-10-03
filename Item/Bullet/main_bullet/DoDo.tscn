@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://7if1cwbyxk2"]
+
+[ext_resource type="PackedScene" uid="uid://de68gef5gngg7" path="res://Item/Bullet/Model_bullet.tscn" id="1_v37v8"]
+[ext_resource type="Texture2D" uid="uid://nk665qckpodh" path="res://Image/MainRocket.png" id="2_kmc8m"]
+
+[node name="DoDo" type="Node2D"]
+
+[node name="MainBullet" parent="." instance=ExtResource("1_v37v8")]
+
+[node name="Sprite2D" parent="MainBullet" index="0"]
+texture = ExtResource("2_kmc8m")
+
+[editable path="MainBullet"]
