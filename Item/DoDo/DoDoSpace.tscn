@@ -9,7 +9,7 @@
 radius = 17.0
 height = 56.0
 
-[node name="DoDo" type="CharacterBody2D"]
+[node name="DoDo" type="CharacterBody2D" groups=["Ally"]]
 z_index = 2
 script = ExtResource("1_fcdv1")
 Bullet = ExtResource("2_yj4i7")

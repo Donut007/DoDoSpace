@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckbl3dd0vah5"]
+[gd_scene load_steps=9 format=3 uid="uid://ckbl3dd0vah5"]
 
 [ext_resource type="Script" path="res://Scene/Scene_1/Scene_1.gd" id="1_q55o1"]
 [ext_resource type="PackedScene" uid="uid://b3hnj6103ue5c" path="res://Item/DoDo/DoDoSpace.tscn" id="2_y7vrx"]
+[ext_resource type="Script" path="res://Item/Script/path_2d.gd" id="3_ua2e0"]
 [ext_resource type="PackedScene" uid="uid://ioic1rd377vr" path="res://Item/Enemy/Enemy.tscn" id="3_ue1y5"]
 
 [sub_resource type="Curve2D" id="Curve2D_2ksoa"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 315, 257, 0, 0, 0, 0, 590, 257, 0, 0, 0, 0, 487.672, 257, 0, 0, 0, 0, 591, 257, 0, 0, 0, 0, 315, 257)
+"points": PackedVector2Array(0, 0, 0, 0, 315, 257, 0, 0, 0, 0, 400, 182, 0, 0, 0, 0, 483, 263, 0, 0, 0, 0, 562, 195, 0, 0, 0, 0, 714, 274, 0, 0, 0, 0, 560, 195, 0, 0, 0, 0, 483, 260, 0, 0, 0, 0, 403, 180, 0, 0, 0, 0, 313, 253)
 }
-point_count = 5
+point_count = 9
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eml8t"]
 size = Vector2(29.5, 670)
@@ -19,8 +20,9 @@ size = Vector2(648.75, 87)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bhkj"]
 size = Vector2(649.875, 48)
 
-[node name="Map" type="Node2D"]
+[node name="Scene_1" type="Node2D" node_paths=PackedStringArray("target")]
 script = ExtResource("1_q55o1")
+target = NodePath("DoDo")
 
 [node name="BG" type="Node2D" parent="."]
 
@@ -55,12 +57,21 @@ position = Vector2(576, 323)
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(113, 10)
 curve = SubResource("Curve2D_2ksoa")
+script = ExtResource("3_ua2e0")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+[node name="Path_1" type="PathFollow2D" parent="Path2D"]
+position = Vector2(352.491, 223.92)
+progress = 50.0
+rotates = false
+
+[node name="Enemy" parent="Path2D/Path_1" instance=ExtResource("3_ue1y5")]
+rotation = 3.14159
+
+[node name="Path_2" type="PathFollow2D" parent="Path2D"]
 position = Vector2(315, 257)
 rotates = false
 
-[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource("3_ue1y5")]
+[node name="Enemy" parent="Path2D/Path_2" instance=ExtResource("3_ue1y5")]
 rotation = 3.14159
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -80,3 +91,5 @@ shape = SubResource("RectangleShape2D_4bhkj")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(887, 329)
 shape = SubResource("RectangleShape2D_eml8t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
